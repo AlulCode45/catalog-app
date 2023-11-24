@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\CategoryModel;
 use App\Models\DiscountModel;
+use App\Models\ProductImageModel;
 use App\Models\ProductModel;
 use App\Models\UserModel;
 use Config\Services;
@@ -18,6 +19,7 @@ class Products extends BaseController
     protected $productModel;
     protected $categoryModel;
     protected $discountModel;
+    protected $productImageModel;
 
     function __construct()
     {
@@ -27,9 +29,11 @@ class Products extends BaseController
         $this->productModel = new ProductModel();
         $this->categoryModel = new CategoryModel();
         $this->discountModel = new DiscountModel();
+        $this->productImageModel = new ProductImageModel();
     }
 
-    function checkSession() {
+    function checkSession()
+    {
         $isLogin = $this->session->get("login");
         if ($isLogin) {
             $email = $this->session->get("email");
@@ -49,13 +53,14 @@ class Products extends BaseController
         //
     }
 
-    public function create() {
+    public function create()
+    {
         $userSession = $this->checkSession();
         if ($userSession) {
             $this->context["title"] = "Create product";
             $this->context["categories"] = $this->categoryModel->findAll();
             $this->context["discounts"] = $this->discountModel->findAll();
-            
+
             echo view("admin/layout/header", $this->context);
             echo view("admin/layout/sidebar");
             echo view("admin/product/createProduct", $this->context);
@@ -66,14 +71,15 @@ class Products extends BaseController
         }
     }
 
-    public function view() {
+    public function view()
+    {
         $userSession = $this->checkSession();
         if ($userSession) {
             $this->context["title"] = "View product";
             $this->context["categories"] = $this->categoryModel->findAll();
             $this->context["discounts"] = $this->discountModel->findAll();
             $this->context["products"] = $this->productModel->findAll();
-            
+
             echo view("admin/layout/header", $this->context);
             echo view("admin/layout/sidebar");
             echo view("admin/product/viewProduct", $this->context);
@@ -84,20 +90,20 @@ class Products extends BaseController
         }
     }
 
-    public function save() {
+    public function save()
+    {
         $rules = [
             "name" => "required",
-            "description" => "required",
             "stock" => "required",
             "price" => "required",
-            "product_image" => "uploaded[product_image]"
-                    . "|is_image[product_image]"
-                    . "|mime_in[product_image,image/jpg,image/jpeg,image/png,image/webp]|max_size[product_image,1024]"
+            "product_image" => "uploaded[product_image]|is_image[product_image]|mime_in[product_image,image/jpg,image/jpeg,image/png,image/webp]"
         ];
 
         $userSession = $this->checkSession();
+
         if ($userSession) {
             $method = strtolower($this->request->getMethod());
+
             if ($method == "post") {
                 if ($this->validate($rules)) {
                     $product_name = $this->request->getVar('name');
@@ -106,29 +112,42 @@ class Products extends BaseController
                     $product_price = $this->request->getVar('price');
                     $product_category = $this->request->getVar('category');
                     $product_discount = $this->request->getVar('discount');
-                    $product_image = $this->request->getFile("product_image");
-    
-                    if (!$product_image->hasMoved()) {
+                    $products_images = $this->request->getFiles("product_image");
+
+                    $uploaded_files = [];
+
+                    foreach ($products_images['product_image'] as $product_image) {
                         $FILENAME = "img_" . hash("sha1", base64_encode(random_bytes(random_int(4, 50)))) . "." . $product_image->getExtension();
                         $product_image->move("uploads", $FILENAME);
-                        $data_post = [
-                            "userid" => $userSession['id'],
-                            "product_name" => $product_name,
-                            "product_category" => $product_category,
-                            "product_price" => $product_price,
-                            "product_stock"  => $product_stock,
-                            "product_discount" => $product_discount,
-                            "product_description" => $product_description,
-                            "product_image" => base_url("uploads/" . $FILENAME)
-                        ];
-        
-                        $this->productModel->save($data_post);
-                        $this->session->setFlashdata("success", "Data berhasil ditambahkan");
-                        return redirect()->to("/admin/product/create");
-                    } else {
-                        $this->session->setFlashdata("error", "Gambar gagal diupload");
-                        return redirect()->to("/admin/product/create");
+                        $uploaded_files[] = base_url("uploads/" . $FILENAME);
                     }
+
+                    $data_post = [
+                        "userid" => $userSession['id'],
+                        "product_name" => $product_name,
+                        "product_category" => $product_category,
+                        "product_price" => $product_price,
+                        "product_stock"  => $product_stock,
+                        "product_discount" => $product_discount,
+                        "product_description" => $product_description,
+                    ];
+
+                    $this->productModel->save($data_post);
+                    $id = $this->productModel->getInsertID();
+
+                    $data_images = [];
+                    foreach ($uploaded_files as $uploaded_file) {
+                        $data_image = [
+                            "product_id" => $id,
+                            "image" => $uploaded_file
+                        ];
+                        $data_images[] = $data_image;
+                    }
+
+                    $this->productImageModel->insertBatch($data_images);
+
+                    $this->session->setFlashdata("success", "Data berhasil ditambahkan");
+                    return redirect()->to("/admin/product/create");
                 } else {
                     $this->session->setFlashdata("errors", $this->validator->getErrors());
                     return redirect()->to("/admin/product/create");
@@ -136,18 +155,16 @@ class Products extends BaseController
             } else {
                 return redirect()->to("/admin/product/create");
             }
-        } else {
-            $this->session->setFlashdata("error", "Maaf anda belum login");
-            return redirect()->to("/login");
         }
     }
 
-    public function update() {
-        
+    public function update()
+    {
     }
 
-    public function delete() {
-        $userSession = $this->checkSession(); 
+    public function delete()
+    {
+        $userSession = $this->checkSession();
         if ($userSession) {
             $method = strtolower($this->request->getMethod());
             if ($method == "post") {
@@ -168,6 +185,6 @@ class Products extends BaseController
         } else {
             $this->session->setFlashdata("error", "Maaf anda belum login");
             return redirect()->to("/login");
-        }    
+        }
     }
 }

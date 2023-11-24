@@ -7,7 +7,7 @@
   <title><?= $title ?></title>
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <link rel="stylesheet" href="<?= base_url('plugins/fontawesome-free/css/all.min.css') ?>">
+  <link rel="stylesheet" href="<?= base_url('plugins/fontawesome-free/css/all.css') ?>">
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <link rel="stylesheet" href="<?= base_url('plugins/icheck-bootstrap/icheck-bootstrap.min.css') ?>">
   <link rel="stylesheet" href="<?= base_url('css/adminlte.min.css') ?>">
@@ -25,7 +25,7 @@
   <script src="<?= base_url('plugins/jquery/jquery.min.js') ?>"></script>
   <script src="<?= base_url('plugins/jquery-ui/jquery-ui.min.js') ?>"></script>
   <script src="<?= base_url('plugins/select2/js/select2.min.js') ?>"></script>
-  
+
   <script src="<?= base_url('plugins/datatables/jquery.dataTables.min.js') ?>"></script>
   <script src="<?= base_url('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') ?>"></script>
   <script src="<?= base_url('plugins/datatables-responsive/js/dataTables.responsive.min.js') ?>"></script>

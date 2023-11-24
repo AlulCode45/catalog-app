@@ -1,0 +1,125 @@
+CRITICAL - 2023-11-24 14:34:34 --> Call to a member function hasMoved() on array
+#0 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\CodeIgniter.php(832): App\Controllers\Products->save()
+#1 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Products))
+#2 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\Users\alulgans\Documents\Project\tokobunga\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(43): require_once('C:\\Users\\alulga...')
+#5 {main}
+CRITICAL - 2023-11-24 14:35:21 --> Call to a member function getExtension() on array
+#0 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\CodeIgniter.php(832): App\Controllers\Products->save()
+#1 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Products))
+#2 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\Users\alulgans\Documents\Project\tokobunga\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(43): require_once('C:\\Users\\alulga...')
+#5 {main}
+CRITICAL - 2023-11-24 14:35:53 --> Call to a member function getExtension() on array
+#0 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\CodeIgniter.php(832): App\Controllers\Products->save()
+#1 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Products))
+#2 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\Users\alulgans\Documents\Project\tokobunga\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(43): require_once('C:\\Users\\alulga...')
+#5 {main}
+CRITICAL - 2023-11-24 14:36:39 --> Undefined variable: products_image
+#0 C:\Users\alulgans\Documents\Project\tokobunga\app\Controllers\Products.php(117): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\Users\\alulga...', 117, Array)
+#1 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\CodeIgniter.php(832): App\Controllers\Products->save()
+#2 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Products))
+#3 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\Users\alulgans\Documents\Project\tokobunga\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(43): require_once('C:\\Users\\alulga...')
+#6 {main}
+CRITICAL - 2023-11-24 14:48:30 --> Undefined index: discount_percent
+#0 C:\Users\alulgans\Documents\Project\tokobunga\app\Views\indexPage.php(169): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\Users\\alulga...', 169, Array)
+#1 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\View\View.php(210): include('C:\\Users\\alulga...')
+#2 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\Common.php(1089): CodeIgniter\View\View->render('indexPage', Array, true)
+#4 C:\Users\alulgans\Documents\Project\tokobunga\app\Controllers\Home.php(53): view('indexPage', Array)
+#5 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\CodeIgniter.php(832): App\Controllers\Home->index()
+#6 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#7 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\Users\alulgans\Documents\Project\tokobunga\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(43): require_once('C:\\Users\\alulga...')
+#10 {main}
+CRITICAL - 2023-11-24 14:57:24 --> Undefined variable: products
+#0 C:\Users\alulgans\Documents\Project\tokobunga\app\Views\indexPage.php(156): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\Users\\alulga...', 156, Array)
+#1 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\View\View.php(210): include('C:\\Users\\alulga...')
+#2 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\Common.php(1089): CodeIgniter\View\View->render('indexPage', Array, true)
+#4 C:\Users\alulgans\Documents\Project\tokobunga\app\Controllers\Home.php(76): view('indexPage', Array)
+#5 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\CodeIgniter.php(832): App\Controllers\Home->index()
+#6 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#7 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\Users\alulgans\Documents\Project\tokobunga\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(43): require_once('C:\\Users\\alulga...')
+#10 {main}
+CRITICAL - 2023-11-24 14:59:10 --> Undefined variable: products
+#0 C:\Users\alulgans\Documents\Project\tokobunga\app\Views\indexPage.php(156): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\Users\\alulga...', 156, Array)
+#1 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\View\View.php(210): include('C:\\Users\\alulga...')
+#2 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\Common.php(1089): CodeIgniter\View\View->render('indexPage', Array, true)
+#4 C:\Users\alulgans\Documents\Project\tokobunga\app\Controllers\Home.php(72): view('indexPage', Array)
+#5 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\CodeIgniter.php(832): App\Controllers\Home->index()
+#6 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#7 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\Users\alulgans\Documents\Project\tokobunga\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(43): require_once('C:\\Users\\alulga...')
+#10 {main}
+CRITICAL - 2023-11-24 14:59:28 --> Undefined index: product_price
+#0 C:\Users\alulgans\Documents\Project\tokobunga\app\Views\indexPage.php(167): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\Users\\alulga...', 167, Array)
+#1 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\View\View.php(210): include('C:\\Users\\alulga...')
+#2 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\Common.php(1089): CodeIgniter\View\View->render('indexPage', Array, true)
+#4 C:\Users\alulgans\Documents\Project\tokobunga\app\Controllers\Home.php(72): view('indexPage', Array)
+#5 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\CodeIgniter.php(832): App\Controllers\Home->index()
+#6 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#7 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\Users\alulgans\Documents\Project\tokobunga\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(43): require_once('C:\\Users\\alulga...')
+#10 {main}
+CRITICAL - 2023-11-24 15:00:21 --> Undefined index: product_price
+#0 C:\Users\alulgans\Documents\Project\tokobunga\app\Views\indexPage.php(166): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\Users\\alulga...', 166, Array)
+#1 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\View\View.php(210): include('C:\\Users\\alulga...')
+#2 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\Common.php(1089): CodeIgniter\View\View->render('indexPage', Array, true)
+#4 C:\Users\alulgans\Documents\Project\tokobunga\app\Controllers\Home.php(72): view('indexPage', Array)
+#5 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\CodeIgniter.php(832): App\Controllers\Home->index()
+#6 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#7 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\Users\alulgans\Documents\Project\tokobunga\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(43): require_once('C:\\Users\\alulga...')
+#10 {main}
+CRITICAL - 2023-11-24 15:00:31 --> Undefined index: product_category
+#0 C:\Users\alulgans\Documents\Project\tokobunga\app\Views\indexPage.php(178): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\Users\\alulga...', 178, Array)
+#1 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\View\View.php(210): include('C:\\Users\\alulga...')
+#2 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\Common.php(1089): CodeIgniter\View\View->render('indexPage', Array, true)
+#4 C:\Users\alulgans\Documents\Project\tokobunga\app\Controllers\Home.php(72): view('indexPage', Array)
+#5 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\CodeIgniter.php(832): App\Controllers\Home->index()
+#6 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#7 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\Users\alulgans\Documents\Project\tokobunga\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(43): require_once('C:\\Users\\alulga...')
+#10 {main}
+CRITICAL - 2023-11-24 15:00:46 --> Undefined index: product_name
+#0 C:\Users\alulgans\Documents\Project\tokobunga\app\Views\indexPage.php(199): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\Users\\alulga...', 199, Array)
+#1 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\View\View.php(210): include('C:\\Users\\alulga...')
+#2 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\Common.php(1089): CodeIgniter\View\View->render('indexPage', Array, true)
+#4 C:\Users\alulgans\Documents\Project\tokobunga\app\Controllers\Home.php(72): view('indexPage', Array)
+#5 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\CodeIgniter.php(832): App\Controllers\Home->index()
+#6 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#7 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\Users\alulgans\Documents\Project\tokobunga\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(43): require_once('C:\\Users\\alulga...')
+#10 {main}
+CRITICAL - 2023-11-24 15:10:33 --> Undefined index: discount_percent
+#0 C:\Users\alulgans\Documents\Project\tokobunga\app\Views\product\viewProduct.php(215): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\Users\\alulga...', 215, Array)
+#1 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\View\View.php(210): include('C:\\Users\\alulga...')
+#2 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\Common.php(1089): CodeIgniter\View\View->render('product/viewPro...', Array, true)
+#4 C:\Users\alulgans\Documents\Project\tokobunga\app\Controllers\Home.php(85): view('product/viewPro...', Array)
+#5 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\CodeIgniter.php(832): App\Controllers\Home->product('1')
+#6 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#7 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\Users\alulgans\Documents\Project\tokobunga\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 C:\Users\alulgans\Documents\Project\tokobunga\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(43): require_once('C:\\Users\\alulga...')
+#10 {main}

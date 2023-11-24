@@ -23,7 +23,7 @@
     <link type="text/css" rel="stylesheet" href="<?= base_url('css/nouislider.min.css') ?>" />
 
     <!-- Font Awesome Icon -->
-    <link rel="stylesheet" href="<?= base_url('css/font-awesome.min.css') ?>">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <style>
         footer {
@@ -65,14 +65,20 @@
                     <!-- SEARCH BAR -->
                     <div class="col-md-6">
                         <div class="header-search">
-                            <form>
-                                <select class="input-select">
-                                    <option value="0">All Categories</option>
-                                    <option value="1">Category 01</option>
-                                    <option value="1">Category 02</option>
+                            <form method="GET" action="/">
+                                <select name="category" class="input-select">
+                                    <option value="">All Categories</option>
+                                    <?php
+                                    $categories = new \App\Models\CategoryModel();
+                                    $no = 1;
+                                    foreach ($categories->findAll() as $category) { ?>
+                                        <option value="<?= $category['id'] ?>"><?= $category['category_name'] ?></option>
+                                    <?php
+                                        $no++;
+                                    } ?>
                                 </select>
-                                <input class="input" placeholder="Search here">
-                                <button class="search-btn">Search</button>
+                                <input class="input" name='search' placeholder="Search here">
+                                <button type="submit" class="search-btn">Search</button>
                             </form>
                         </div>
                     </div>
@@ -109,13 +115,7 @@
             <div id="responsive-nav">
                 <!-- NAV -->
                 <ul class="main-nav nav navbar-nav">
-                    <li class="active"><a href="#">Home</a></li>
-                    <!-- <li><a href="#">Hot Deals</a></li>
-                    <li><a href="#">Categories</a></li>
-                    <li><a href="#">Laptops</a></li>
-                    <li><a href="#">Smartphones</a></li>
-                    <li><a href="#">Cameras</a></li>
-                    <li><a href="#">Accessories</a></li> -->
+                    <li class="active"><a href="/">Home</a></li>
                 </ul>
                 <!-- /NAV -->
             </div>
@@ -134,8 +134,8 @@
             <div class="row">
                 <div class="col-md-12">
                     <ul class="breadcrumb-tree">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Products</a></li>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/">Products</a></li>
                         <li class="active"><?= $product['product_name'] ?></li>
                     </ul>
                 </div>
@@ -155,106 +155,53 @@
                 <!-- Product main img -->
                 <div class="col-md-5 col-md-push-2">
                     <div id="product-main-img">
-                        <div class="product-preview">
-                            <img src="<?= $product['product_image'] ?> " alt="">
-                        </div>
-
-                        <div class="product-preview">
-                            <img src="<?= $product['product_image'] ?> " alt="">
-                        </div>
-
-                        <div class="product-preview">
-                            <img src="<?= $product['product_image'] ?> " alt="">
-                        </div>
-
-                        <div class="product-preview">
-                            <img src="<?= $product['product_image'] ?> " alt="">
-                        </div>
+                        <?php foreach ($productImages as $productImage) : ?>
+                            <div class="product-preview">
+                                <img src="<?= $productImage['image'] ?>" alt="Product Image">
+                            </div>
+                        <?php endforeach; ?>
                     </div>
                 </div>
                 <!-- /Product main img -->
 
                 <!-- Product thumb imgs -->
-                <div class="col-md-2  col-md-pull-5">
+                <div class="col-md-2 col-md-pull-5">
                     <div id="product-imgs">
-                        <div class="product-preview">
-                            <img src="<?= $product['product_image'] ?> " alt="">
-                        </div>
-
-                        <div class="product-preview">
-                            <img src="<?= $product['product_image'] ?> " alt="">
-                        </div>
-
-                        <div class="product-preview">
-                            <img src="<?= $product['product_image'] ?> " alt="">
-                        </div>
-
-                        <div class="product-preview">
-                            <img src="<?= $product['product_image'] ?> " alt="">
-                        </div>
+                        <?php foreach ($productImages as $productImage) : ?>
+                            <div class="product-preview">
+                                <img src="<?= $productImage['image'] ?>" alt="Product Image">
+                            </div>
+                        <?php endforeach; ?>
                     </div>
                 </div>
                 <!-- /Product thumb imgs -->
+
 
                 <!-- Product details -->
                 <div class="col-md-5">
                     <div class="product-details">
                         <h2 class="product-name"><?= $product['product_name'] ?></h2>
-                        <!-- <div>
-                            <div class="product-rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-o"></i>
-                            </div>
-                            <a class="review-link" href="#">10 Review(s) | Add your review</a>
-                        </div> -->
                         <?php
-                        $discount = $discountModel->find($product['product_discount']);
-                        if ($discount != null) {
-                            $price = number_format($product['product_price'] - ($product['product_price'] * $discount['discount_percent'] / 100), 0, ",", ".");
-                            $oldPrice = $product['product_price'];
-                        } else {
-                            $price = number_format($product['product_price'], 0, ",", ".");
-                        }
+                        $price = number_format($product['product_price'], 0, ",", ".");
                         ?>
                         <div>
                             <h3 class="product-price">
                                 Rp. <?= $price ?>
-                                <?php if (isset($oldPrice)) : ?>
-                                    <del class="product-old-price">Rp. <?= number_format($oldPrice, 0, ",", ".") ?></del>
-                                <?php endif; ?>
                             </h3>
                             <span class="product-available"><?= $product['product_stock'] ?> In Stock</span>
                         </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-
-                        <!-- <div class="product-options">
-                            <label>
-                                Size
-                                <select class="input-select">
-                                    <option value="0">X</option>
-                                </select>
-                            </label>
-                            <label>
-                                Color
-                                <select class="input-select">
-                                    <option value="0">Red</option>
-                                </select>
-                            </label>
-                        </div> -->
+                        <p>
+                            <?= substr($product['product_description'], 0, 300) ?>
+                        </p>
 
                         <div class="add-to-cart">
-                            <!-- <div class="qty-label">
-                                Qty
-                                <div class="input-number">
-                                    <input type="number">
-                                    <span class="qty-up">+</span>
-                                    <span class="qty-down">-</span>
-                                </div>
-                            </div> -->
-                            <button class="add-to-cart-btn"><i class="fa fa-whatsapp"></i> WhatsApp</button>
+                            <?php
+                            $whatsapp = new \App\Models\SettingModel();
+                            $whatsapp = $whatsapp->first() ? $whatsapp->first()['whatsapp'] : '';
+                            ?>
+                            <a href="https://wa.me/<?= $whatsapp ?>?text=%23informasi_produk%0D%0ADengan+Nama+%3A+<?= $product['product_name'] ?>%0D%0ATanggal+%3A+<?= date('Y-m-d') ?>">
+                                <button class="add-to-cart-btn"><i class="fa fa-whatsapp"></i> WhatsApp</button>
+                            </a>
                         </div>
 
                     </div>
