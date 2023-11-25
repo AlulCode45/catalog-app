@@ -29,6 +29,8 @@ $routes->group("admin", function ($routes) {
         $routes->add("save", "Products::save");
         $routes->add("view", "Products::view");
         $routes->add("delete", "Products::delete");
+        $routes->add("update/(:num)", "Products::update/$1");
+        $routes->add("save-update", "Products::saveUpdate");
     });
 
     $routes->group("category", function ($routes) {

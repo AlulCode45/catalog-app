@@ -6,10 +6,20 @@ use App\Models\ProductModel;
 use App\Models\CategoryModel;
 use App\Models\DiscountModel;
 use App\Models\ProductImageModel;
+use App\Models\UserModel;
+use Config\Services;
 
 class Home extends BaseController
 {
+    protected $session;
     protected $context = array();
+    protected $userModel;
+
+    function __construct()
+    {
+        $this->session = Services::session();
+        $this->userModel = new UserModel();
+    }
 
     public function index()
     {
@@ -81,11 +91,6 @@ class Home extends BaseController
         // Mengecek apakah produk dengan ID yang diberikan ada
         $product = $productModel->find($id);
 
-        // if (!$product) {
-        //     // Produk tidak ditemukan, dapatkan menangani kasus ini sesuai kebutuhan Anda
-        //     return redirect()->to('/produk-tidak-ditemukan');
-        // }
-
         // Mengambil gambar terkait dengan produk
         $productImages = $imageProductModel->where('product_id', $id)->findAll();
 
@@ -101,13 +106,35 @@ class Home extends BaseController
         return view('product/viewProduct', $data);
     }
 
+    function checkSession()
+    {
+        $isLogin = $this->session->get("login");
+        if ($isLogin) {
+            $email = $this->session->get("email");
+            $userData = $this->userModel->where("email", $email)->first();
+            if ($userData) {
+                return $userData;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
     public function admin()
     {
-        $this->context["title"] = "Dashboard";
+        $userSession = $this->checkSession();
+        if ($userSession) {
+            $this->context["title"] = "Dashboard";
 
-        echo view("admin/layout/header", $this->context);
-        echo view("admin/layout/sidebar");
-        echo view("admin/dashboard");
-        echo view("admin/layout/footer");
+            echo view("admin/layout/header", $this->context);
+            echo view("admin/layout/sidebar");
+            echo view("admin/dashboard");
+            echo view("admin/layout/footer");
+        } else {
+            $this->session->setFlashdata("error", "Maaf anda belum login");
+            return redirect()->to("/login");
+        }
     }
 }

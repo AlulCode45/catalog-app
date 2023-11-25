@@ -75,14 +75,11 @@
                                                     <label for="product_image" class="custom-file-label" id="file-label">PILIH FILE</label>
                                                 </div>
                                             </div>
-
-
                                             <div class="col-md-4 my-auto">
                                                 <label>Description</label>
                                             </div>
                                             <div class="col-lg-12 form-group mb-2">
                                                 <textarea name="description" id="description" cols="30" rows="10"></textarea>
-                                                <!-- <input type="text" id="description" class="form-control" name="description" placeholder="Product description"> -->
                                             </div>
                                             <div class="col-sm-12 d-flex justify-content-end">
                                                 <button type="submit" class="btn btn-primary me-1 mb-1">Submit</button>

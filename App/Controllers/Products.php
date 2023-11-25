@@ -48,11 +48,6 @@ class Products extends BaseController
         }
     }
 
-    public function index()
-    {
-        //
-    }
-
     public function create()
     {
         $userSession = $this->checkSession();
@@ -75,20 +70,44 @@ class Products extends BaseController
     {
         $userSession = $this->checkSession();
         if ($userSession) {
-            $this->context["title"] = "View product";
-            $this->context["categories"] = $this->categoryModel->findAll();
-            $this->context["discounts"] = $this->discountModel->findAll();
-            $this->context["products"] = $this->productModel->findAll();
 
-            echo view("admin/layout/header", $this->context);
+            $categoryModel = new CategoryModel();
+            $discountModel = new DiscountModel();
+            $imageProductModel = new ProductImageModel();
+
+
+
+            // Get data 
+            $product = new ProductModel();
+            $products = $product->findAll();
+
+            // Membangun struktur data yang diinginkan
+            $resultData = [];
+
+            foreach ($products as $productItem) {
+                $resultItem = [
+                    'data_product' => $productItem,
+                    'images' => $imageProductModel->where('product_id', $productItem['id'])->findAll()
+                ];
+
+                $resultData[] = $resultItem;
+            }
+            $data = [
+                'title' => 'Product',
+                'categories' => $categoryModel->findAll(),
+                'products' => $resultData,
+            ];
+
+            echo view("admin/layout/header", $data);
             echo view("admin/layout/sidebar");
-            echo view("admin/product/viewProduct", $this->context);
+            echo view("admin/product/viewProduct", $data);
             echo view("admin/layout/footer");
         } else {
-            $this->session->setFlashdata("error", "Maaf anda belum login");
+            $this->session->setFlashdata("error", "Maaf, Anda belum login");
             return redirect()->to("/login");
         }
     }
+
 
     public function save()
     {
@@ -111,7 +130,6 @@ class Products extends BaseController
                     $product_stock = $this->request->getVar('stock');
                     $product_price = $this->request->getVar('price');
                     $product_category = $this->request->getVar('category');
-                    $product_discount = $this->request->getVar('discount');
                     $products_images = $this->request->getFiles("product_image");
 
                     $uploaded_files = [];
@@ -128,7 +146,6 @@ class Products extends BaseController
                         "product_category" => $product_category,
                         "product_price" => $product_price,
                         "product_stock"  => $product_stock,
-                        "product_discount" => $product_discount,
                         "product_description" => $product_description,
                     ];
 
@@ -158,9 +175,89 @@ class Products extends BaseController
         }
     }
 
-    public function update()
+    public function update($id)
     {
+        $productModel = new ProductModel();
+        $categoryModel = new CategoryModel();
+        $imageProductModel = new ProductImageModel();
+
+        $product = $productModel->find($id);
+        $categories = $categoryModel->findAll();
+        $productImages = $imageProductModel->where('product_id', $id)->findAll();
+
+        if (!$product) {
+
+            $this->session->setFlashdata("error", "Maaf produk tidak ditemukan");
+            return redirect()->to("/admin/product/view");
+        }
+
+        $data = [
+            'title' => 'Edit Produk',
+            'product_id' => $id,
+            'product' => $product,
+            'categories' => $categories,
+            'productImages' => $productImages,
+        ];
+
+        echo view("admin/layout/header", $data);
+        echo view("admin/layout/sidebar");
+        echo view('admin/product/updateProduct', $data);
+        echo view("admin/layout/footer");
     }
+    public function saveUpdate()
+    {
+        $productModel = new ProductModel();
+        $imageProductModel = new ProductImageModel();
+
+        $productId = $this->request->getPost('product_id');
+        $product = $productModel->find($productId);
+
+        if (!$product) {
+            $this->session->setFlashdata("error", "Maaf produk tidak ditemukan");
+            return redirect()->to("/admin/product/view");
+        }
+
+        // Update gambar-gambar
+        $productImages = $this->request->getFiles('product_image')['product_image'];
+        $imageIds = $this->request->getPost('image_ids');
+
+        foreach ($productImages as $key => $productImage) {
+            // Periksa apakah $productImage adalah instans dari UploadedFile
+            if ($productImage instanceof \CodeIgniter\HTTP\Files\UploadedFile) {
+                // Periksa apakah file valid dan tidak ada error
+                if ($productImage->isValid() && !$productImage->hasMoved()) {
+                    $filename = 'img_' . hash("sha1", base64_encode(random_bytes(random_int(4, 50)))) . '.' . $productImage->getExtension();
+                    $productImage->move('uploads', $filename);
+
+                    // Dapatkan ID gambar dari input hidden
+                    $imageId = $imageIds[$key];
+
+                    // Perbarui data gambar di tabel product_images
+                    $imageData = [
+                        'product_id' => $productId,
+                        'image' => base_url("uploads/" . $filename),
+                    ];
+
+                    $imageProductModel->update($imageId, $imageData);
+                }
+            }
+        }
+
+        // Update informasi produk
+        $productData = [
+            'product_name' => $this->request->getPost('name'),
+            'product_category' => $this->request->getPost('category'),
+            'product_stock' => $this->request->getPost('stock'),
+            'product_price' => $this->request->getPost('price'),
+            'product_description' => $this->request->getPost('description'),
+        ];
+
+        $productModel->update($productId, $productData);
+
+        $this->session->setFlashdata("success", "Data berhasil di edit");
+        return redirect()->to("/admin/product/view");
+    }
+
 
     public function delete()
     {

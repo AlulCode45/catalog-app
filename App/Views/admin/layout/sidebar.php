@@ -8,13 +8,13 @@
                 <img src="<?= base_url('img/user2-160x160.jpg') ?>" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Alexander Pierce</a>
+                <a href="#" class="d-block">Welcome Admin</a>
             </div>
         </div>
 
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-            <li class="nav-item">
+                <li class="nav-item">
                     <a href="<?= base_url() ?>" class="nav-link">
                         <i class="nav-icon fas fa-rocket"></i>
                         <p>
@@ -72,70 +72,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-percentage"></i>
-                        <p>
-                            Discount
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="<?= base_url('admin/discount/create') ?>" class="nav-link">
-                                <p>New discount</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="<?= base_url('admin/discount/view') ?>" class="nav-link">
-                                <p>View discount</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <!--<li class="nav-item">-->
-                <!--    <a href="#" class="nav-link">-->
-                <!--        <i class="nav-icon fas fa-edit"></i>-->
-                <!--        <p>-->
-                <!--            Page-->
-                <!--            <i class="fas fa-angle-left right"></i>-->
-                <!--        </p>-->
-                <!--    </a>-->
-                <!--    <ul class="nav nav-treeview">-->
-                <!--        <li class="nav-item">-->
-                <!--            <a href="<?= base_url('admin') ?>" class="nav-link">-->
-                <!--                <p>Beranda</p>-->
-                <!--            </a>-->
-                <!--        </li>-->
-                <!--        <li class="nav-item">-->
-                <!--            <a href="pages/forms/advanced.html" class="nav-link">-->
-                <!--                <p>Hubungi kami</p>-->
-                <!--            </a>-->
-                <!--        </li>-->
-                <!--        <li class="nav-item">-->
-                <!--            <a href="pages/forms/editors.html" class="nav-link">-->
-                <!--                <p>Sosial media</p>-->
-                <!--            </a>-->
-                <!--        </li>-->
-                <!--    </ul>-->
-                <!--</li>-->
-                <!--<li class="nav-item">-->
-                <!--    <a href="<?= base_url('admin/users') ?>" class="nav-link">-->
-                <!--        <i class="nav-icon fas fa-users"></i>-->
-                <!--        <p>-->
-                <!--            Users-->
-                <!--        </p>-->
-                <!--    </a>-->
-                <!--</li>-->
-                <!--<li class="nav-item">-->
-                <!--    <a href="<?= base_url('admin/settings') ?>" class="nav-link">-->
-                <!--        <i class="nav-icon fa fa-cog"></i>-->
-                <!--        <p>-->
-                <!--            Settings-->
-                <!--        </p>-->
-                <!--    </a>-->
-                <!--</li>-->
-                <?php if (session()->get("login") == true): ?>
+                <?php if (session()->get("login") == true) : ?>
                     <li class="nav-item">
                         <a href="<?= base_url('logout') ?>" class="nav-link">
                             <i class="nav-icon fa fa-arrow-right"></i>

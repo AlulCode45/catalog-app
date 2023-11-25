@@ -3,17 +3,8 @@
 use App\Models\CategoryModel;
 use App\Models\DiscountModel;
 
-function findDiscount($id) {
-    $discountModel = new DiscountModel();
-    $discountData = $discountModel->where("id", $id)->first();
-    if ($discountData) {
-        return $discountData['discount_percent'] . "%";
-    } else {
-        return "Tidak diketahui";
-    }
-}
-
-function findCategory($id) {
+function findCategory($id)
+{
     $categoryModel = new CategoryModel();
     $categoryData = $categoryModel->where("id", $id)->first();
     if ($categoryData) {
@@ -23,16 +14,6 @@ function findCategory($id) {
     }
 }
 
-function findPriceOff($id, $price) {
-    $discountModel = new DiscountModel();
-    $discountData = $discountModel->where("id", $id)->first();
-    if ($discountData) {
-        $priceOff = (intval($discountData['discount_percent']) / 100) * $price;
-        return $price - $priceOff;
-    } else {
-        return "Tidak diketahui";
-    }
-}
 ?>
 <div class="content-wrapper">
     <div class="content-header">
@@ -66,31 +47,28 @@ function findPriceOff($id, $price) {
                                 <th>Description</th>
                                 <th>Category</th>
                                 <th>Price</th>
-                                <th>Price off</th>
                                 <th>Stock</th>
-                                <th>Discount</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php $index = 1;
-                            foreach ($products as $product) : ?>
+                            foreach ($products as $product) :
+                                $price = number_format($product['data_product']['product_price'], 0, ",", ".");
+                                $image = $product['images'];
+                            ?>
                                 <tr>
                                     <td><?= $index++ ?></td>
-                                    <td><img src="<?= $product['product_image'] ?>" alt="Gambar produk" class="thumbnail" style="width:64px;height:64px;"></td>
-                                    <td><?= $product['product_name'] ?></td>
-                                    <td><?= $product['product_description'] ?></td>
-                                    <td><?= findCategory($product['product_category']) ?></td>
-                                    <td><?= $product['product_price'] ?></td>
-                                    <td><?= findPriceOff($product['product_discount'], $product['product_price']) ?></td>
-                                    <td><?= $product['product_stock'] ?></td>
-                                    <td>
-                                        <?= findDiscount($product['product_discount']) ?>
-                                    </td>
+                                    <td><img src="<?= $image[0]['image'] ?? '' ?>" alt="Gambar produk" class="thumbnail" style="width:64px;height:64px;"></td>
+                                    <td><?= $product['data_product']['product_name'] ?></td>
+                                    <td><?= $product['data_product']['product_description'] ?></td>
+                                    <td><?= findCategory($product['data_product']['product_category']) ?></td>
+                                    <td><?= $price ?></td>
+                                    <td><?= $product['data_product']['product_stock'] ?></td>
                                     <td>
                                         <div class="d-flex d-inline">
-                                            <button class="btn btn-sm btn-danger mx-1" onclick="handleDelete('<?= $product['id'] ?>')">DELETE</button>
-                                            <!-- <button class="btn btn-sm btn-primary mx-1">UPDATE</button> -->
+                                            <button class="btn btn-sm btn-danger mx-1" onclick="handleDelete('<?= $product['data_product']['id'] ?>')">DELETE</button>
+                                            <a href="<?= base_url('/admin/product/update/' . $product['data_product']['id']) ?>"><button class="btn btn-sm btn-primary mx-1">UPDATE</button></a>
                                         </div>
                                     </td>
                                 </tr>
